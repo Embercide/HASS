@@ -1,0 +1,20 @@
+##########################
+## Lighting Automations ##
+##########################
+
+- alias: Turn on Aquarium Light
+  trigger:
+    platform: time
+    at: '05:00:00'
+
+  action:
+    service: switch.turn_on
+    entity_id: switch.wemo_insight
+
+- alias: Turn off Aquarium Light
+  trigger:
+    platform: time
+    at: '19:00:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.wemo_insight

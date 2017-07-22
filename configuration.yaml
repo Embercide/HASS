@@ -1,0 +1,115 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: 0
+  unit_system: metric
+  time_zone: !secret mytime_zone
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret my_api_password
+  ssl_certificate: !secret my_ssl_certificate
+  ssl_key: !secret my_ssl_key
+  base_url: !secret my_base_url
+
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+# include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+recorder:  
+
+group: !include groups.yaml
+
+zone 1:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  radius: 100
+  #icon: mdi:home
+
+zone 2:
+  name: Luke Work
+  latitude: !secret l_work_lat
+  longitude: !secret l_work_long
+  radius: 100
+
+zone 3:
+  name: Cassie Mums
+  latitude: !secret c_mum_lat
+  longitude: !secret c_mum_long
+  radius: 100
+
+
+automation: !include_dir_merge_list automation
+
+
+wemo:
+  static:
+    - 192.168.1.202
+    - 192.168.1.203
+    
+light:
+  platform: hue
+  host: 192.168.1.201
+  
+media_player onkyo:
+  platform: onkyo
+  host: 192.168.1.205
+  name: receiver
+  sources:
+    pc: 'HTPC'
+
+media_player TV:
+  platform: braviatv
+  host: 192.168.1.206
+
+device_tracker:
+#  platform: asuswrt
+#  host: 192.168.1.1
+#  username: !secret asus_user
+#  password: !secret asus_pass
+#  interval_seconds: 12
+#  consider_home: 60
+#  track_new_devices: no
+  platform: nmap_tracker
+  hosts: 192.168.1.1/24
+  home_interval: 5
+  exclude: 192.168.1.100
+
+
+shell_command:
+  customaction: echo 'CustomAction (1, "Hello")' | nc -C 192.168.1.5 12007
+

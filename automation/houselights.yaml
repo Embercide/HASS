@@ -1,0 +1,42 @@
+#################################
+# Living room lights on         #
+# When at least one person home #
+#################################
+
+- alias: Luke Home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.luke
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: light.living_room
+
+- alias: Cassie Home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.cassie
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: switch.turn_on
+      entity_id: light.living_room
+  
+#########################
+# House lights off      #
+# When both people away #
+#########################
+
+- alias: Both Away
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'home'
+    to: 'not_home'
+
+  action:
+    service: switch.turn_off
+    entity_id: group.all_lights

@@ -1,0 +1,18 @@
+zone 1:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  radius: 100
+  #icon: mdi:home
+
+zone 2:
+  name: Luke Work
+  latitude: !secret l_work_lat
+  longitude: !secret l_work_long
+  radius: 100
+
+zone 3:
+  name: Cassie Mums
+  latitude: !secret c_mum_lat
+  longitude: !secret c_mum_long
+  radius: 100
