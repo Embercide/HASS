@@ -3,34 +3,42 @@
 # When at least one person home #
 #################################
 
-- alias: Luke Home
+- alias: Luke Detected as Home
   trigger:
     - platform: state
       entity_id: device_tracker.luke
       from: 'not_home'
       to: 'home'
-
   action:
-    - service: switch.turn_on
+    - service: light.turn_on
       entity_id: light.living_room
+#    - service: tts.google_say
+#      delay: 00:02:00
+#      entity_id: media_player.kitchen_home
+#      data:
+#        message: 'Welcome Home Luke'
 
-- alias: Cassie Home
+- alias: Cassie Detected as Home
   trigger:
     - platform: state
       entity_id: device_tracker.cassie
       from: 'not_home'
       to: 'home'
-
   action:
-    - service: switch.turn_on
+    - service: light.turn_on
       entity_id: light.living_room
+#    - service: tts.google_say
+#      delay: 00:03:00
+#      entity_id: media_player.kitchen_home
+#      data:
+#        message: 'Welcome Home Cassie, looking beautiful as always'
   
 #########################
 # House lights off      #
 # When both people away #
 #########################
 
-- alias: Both Away
+- alias: Both Detected as Away
   trigger:
     platform: state
     entity_id: group.all_devices
@@ -38,5 +46,5 @@
     to: 'not_home'
 
   action:
-    service: switch.turn_off
+    service: light.turn_off
     entity_id: group.all_lights

@@ -1,0 +1,29 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.lights
+    - group.media
+    - group.aquarium
+lights:
+  name: Lights
+  view: yes
+  icon: mdi:lightbulb-on
+  entities:
+    - light.hallway
+    - light.living_room
+    - switch.wemo_light_switch
+media:
+  name: Media
+  view: yes
+  icon: mdi:television
+  entities:
+    - media_player.receiver
+    - media_player.sony_bravia_tv
+    - media_player.kitchen_home
+aquarium:
+  name: Aquarium
+  view: yes
+  icon: mdi:fish
+  entities:
+    - switch.wemo_insight
